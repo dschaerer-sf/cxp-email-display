@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CXP Email Demo Display - Nespresso</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+    <div class="connection-status" id="connectionStatus">
+        🔌 Ready
+    </div>
 
+    <div class="container">
+        <div class="header">
+            <div class="nespresso-logo">☕ NESPRESSO</div>
+            <h1>CXP Email Demo Display</h1>
+            <p>Real-time email orchestration demonstration</p>
+            <div class="github-info">
+                <span>🚀 Powered by GitHub Pages</span>
+            </div>
+        </div>
+        
+        <div class="status" id="status">
+            ⏳ Ready to receive email triggers from CXP platform
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-number" id="emailCount">0</span>
+                <span>Emails Triggered</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="avgResponseTime">0ms</span>
+                <span>Avg Response Time</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="lastTrigger">Never</span>
+                <span>Last Trigger</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="pageViews">0</span>
+                <span>Page Views</span>
+            </div>
+        </div>
+        
+        <div class="webhook-info">
+            <h3>📡 Webhook Configuration</h3>
+            <div class="webhook-tabs">
+                <button class="tab-button active" onclick="showTab('github-actions')">GitHub Actions</button>
+                <button class="tab-button" onclick="showTab('external-webhook')">External Service</button>
+            </div>
+            
+            <div id="github-actions-tab" class="webhook-tab active">
+                <p><strong>GitHub Actions Webhook:</strong></p>
+                <div class="webhook-url" id="githubWebhookUrl">
+                    https://api.github.com/repos/YOUR_USERNAME/cxp-email-display/dispatches
+                </div>
+                <div class="webhook-details">
+                    <p><strong>Method:</strong> POST</p>
+                    <p><strong>Headers:</strong></p>
+                    <code>
+                        Authorization: token YOUR_GITHUB_TOKEN<br>
+                        Accept: application/vnd.github.v3+json
+                    </code>
+                    <p><strong>Body:</strong></p>
+                    <code>{"event_type": "email_trigger", "client_payload": {...}}</code>
+                </div>
+            </div>
+            
+            <div id="external-webhook-tab" class="webhook-tab">
+                <p><strong>External Webhook Service:</strong></p>
+                <div class="webhook-url" id="externalWebhookUrl">
+                    https://webhook.site/your-unique-id
+                </div>
+                <button class="test-button" onclick="generateWebhookSite()">Generate New Webhook.site URL</button>
+            </div>
+        </div>
+        
+        <div class="test-controls">
+            <button class="test-button" onclick="simulateWelcomeEmail()">
+                🎉 Welcome Journey
+            </button>
+            <button class="test-button" onclick="simulateAbandonedCart()">
+                🛒 Cart Abandonment
+            </button>
+            <button class="test-button" onclick="simulateProductReco()">
+                ⭐ Product Recommendation
+            </button>
+            <button class="test-button" onclick="simulatePurchaseConfirm()">
+                ✅ Purchase Confirmation
+            </button>
+            <button class="test-button" onclick="simulateWinbackCampaign()">
+                💝 Winback Campaign
+            </button>
+            <button class="clear-button" onclick="clearEmails()">
+                🗑️ Clear All
+            </button>
+        </div>
+
+        <div class="demo-instructions">
+            <h3>🎯 Demo Instructions</h3>
+            <ol>
+                <li>Configure your CXP platform to send webhook requests to the endpoint above</li>
+                <li>Trigger events in CXP (cart abandonment, welcome journey, etc.)</li>
+                <li>Watch this display update in real-time with personalized email content</li>
+                <li>Use test buttons above to simulate different scenarios</li>
+            </ol>
+        </div>
+
+        <div id="emailContainer">
+            <!-- Emails will be displayed here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>CXP Email Demo Display • GitHub Pages Deployment • <span id="currentTime"></span></p>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
