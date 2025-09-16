@@ -1,1 +1,21 @@
+title: "CXP Email Demo Display"
+description: "Real-time email orchestration demonstration for Nespresso CXP"
+url: "https://yourusername.github.io"
+baseurl: "/cxp-email-display"
 
+# GitHub Pages settings
+theme: null
+plugins: []
+
+# Include/exclude files
+include:
+  - assets/
+  - webhook/
+
+exclude:
+  - README.md
+  - .gitignore
+  - .github/
+
+# Custom settings
+timezone: Europe/Zurich
