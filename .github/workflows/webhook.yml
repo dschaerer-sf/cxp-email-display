@@ -1,1 +1,25 @@
+name: Handle CXP Email Webhook
 
+on:
+  repository_dispatch:
+    types: [email_trigger]
+
+jobs:
+  process-email-trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log webhook received
+        run: |
+          echo "Email trigger received from CXP"
+          echo "Email data: ${{ toJson(github.event.client_payload) }}"
+      
+      - name: Process email data
+        run: |
+          # You can add processing logic here
+          # For now, we'll just log the data
+          echo "Processing email trigger for: ${{ github.event.client_payload.to }}"
+          echo "Subject: ${{ github.event.client_payload.subject }}"
+      
+      - name: Update GitHub Pages (if needed)
+        # This could trigger a rebuild or update a data file
+        run: echo "Webhook processed successfully"
